@@ -29,6 +29,11 @@
         #blur.enabled = false;
       };
 
+      ecosystem = {
+          no_update_news = true;
+          no_donation_nag = true;
+      };
+
       monitorv2 = [
         {
           output = "desc:Ancor Communications Inc ROG PG279Q #ASPyoJ5sadfd";
