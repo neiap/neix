@@ -77,16 +77,10 @@
   home.packages = [
     pkgs.nixfmt-tree
     pkgs.claude-code
+    pkgs.discord
+    pkgs.steam
   ];
 
-  # This VM has no real GPU (see hyprland.nix), so LIBGL_ALWAYS_SOFTWARE=1 is
-  # forced session-wide to avoid wl_surface crashes. VSCodium is Chromium-based
-  # and would otherwise emulate GPU compositing through llvmpipe on every
-  # repaint, causing CPU spikes. Disabling hardware acceleration makes it skip
-  # GPU compositing entirely instead, which is far cheaper on a CPU rasterizer.
-  home.file.".config/VSCodium/argv.json".text = builtins.toJSON {
-    disable-hardware-acceleration = true;
-  };
 
   wayland = {
     windowManager = {
@@ -94,20 +88,9 @@
         enable = true;
         configType = "hyprlang";
         settings = {
-          env = [
-            "WLR_NO_HARDWARE_CURSORS,1"
-            "LIBGL_ALWAYS_SOFTWARE,1"
-          ];
         };
       };
     };
   };
-
-  systemd.user.services.vicinae.Service.Environment = [
-    "QSG_RHI_BACKEND=software"
-    "QT_QUICK_BACKEND=software"
-    "LIBGL_ALWAYS_SOFTWARE=1"
-  ];
-
 
 }

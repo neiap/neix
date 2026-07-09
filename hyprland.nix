@@ -24,20 +24,28 @@
 
       "$mod" = "SUPER";
 
-      # This VM has no real 3D-accelerated GPU, so everything renders via
-      # llvmpipe (CPU software rasterizer, forced on via LIBGL_ALWAYS_SOFTWARE
-      # to avoid the wl_surface crashes). Blur/shadows/animations are all
-      # expensive per-pixel work that a CPU rasterizer handles badly, so
-      # they're switched off here. The monitor line also caps the resolution
-      # well below the VM's native 2560x1326 (~3.4MP/frame) since total pixel
-      # count is the main cost driver for software compositing. Tune the
-      # resolution up/down to trade sharpness for smoothness.
-      monitor = "Virtual-1,1920x1080@60,auto,1";
-
       decoration = {
         #shadow.enabled = false;
         #blur.enabled = false;
       };
+
+      monitorv2 = [
+        {
+          output = "desc:Ancor Communications Inc ROG PG279Q #ASPyoJ5sadfd";
+          mode = "2650x1440@165";
+          position = "0x0";
+        }
+        {
+          output = "desc:ASUSTek COMPUTER INC VG27AQ1A S9LMQS05834";
+          mode = "2560x1440@144";
+          position = "auto-right";
+        }
+        {
+          output = "desc:Philips Consumer Electronics Company PHL 241V8B UHB2327001622";
+          mode = "1920x1080@100";
+          position = "auto-left";
+        }
+      ];
 
       #animations.enabled = false;
 

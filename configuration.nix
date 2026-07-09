@@ -89,7 +89,11 @@
     };
     gvfs.enable = true;
     tumbler.enable = true;
+    xserver.videoDrivers = [ "nvidia" ];
   };
+
+  hardware.nvidia.modesetting.enable = true;
+  hardware.nvidia.open = false;
 
   nix = {
     settings = {
@@ -104,6 +108,9 @@
   ];
 
   nixpkgs.config.allowUnfree = true;
+  
+  environment.sessionVariables.NIXPKGS_ALLOW_UNFREE = "1";
+
 
   system.stateVersion = "26.11"; # Did you read the comment?
 
