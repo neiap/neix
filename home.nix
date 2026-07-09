@@ -80,6 +80,8 @@
     pkgs.discord
     pkgs.steam
     pkgs.grimblast
+    pkgs.wl-clipboard
+    pkgs.vrcx
   ];
 
 
