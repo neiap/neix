@@ -27,12 +27,12 @@
     };
     nh = {
       enable = true;
-      flake = "/home/neia/config";
+      flake = "/home/neia/neix";
     };
     git = {
       enable = true;
       settings.user = {
-        name = "neia";
+        name = "neiap";
         email = "neiap@proton.me";
       };
     };
