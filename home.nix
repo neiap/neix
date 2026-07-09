@@ -79,6 +79,7 @@
     pkgs.claude-code
     pkgs.discord
     pkgs.steam
+    pkgs.grimblast
   ];
 
 
