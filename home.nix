@@ -78,7 +78,6 @@
     pkgs.nixfmt-tree
     pkgs.claude-code
     pkgs.discord
-    pkgs.steam
     pkgs.grimblast
     pkgs.wl-clipboard
     pkgs.vrcx
@@ -92,6 +91,28 @@
         configType = "hyprlang";
         settings = {
         };
+      };
+    };
+  };
+
+  services = {
+    hyprpaper = {
+      enable = true;
+      settings = {
+        wallpaper = [
+          {
+            monitor = "DP-1";
+            path = "/home/neia/pictures/wall1.png";
+          }
+          {
+            monitor = "DP-2";
+            path = "/home/neia/pictures/wall1.png";
+          }
+          {
+            monitor = "HDMI-A-1";
+            path = "/home/neia/pictures/wall3.png";
+          }
+        ];
       };
     };
   };

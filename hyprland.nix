@@ -25,8 +25,18 @@
       "$mod" = "SUPER";
 
       decoration = {
-        #shadow.enabled = false;
-        #blur.enabled = false;
+        shadow = {
+          range = 8;
+          render_power = 3;
+          color = "rgba(00000055)";
+        };
+        dim_inactive = false;
+        blur.enabled = true;
+      };
+
+      general = {
+        gaps_in = 3;
+        gaps_out = 6;
       };
 
       ecosystem = {
@@ -52,7 +62,7 @@
         }
       ];
 
-      #animations.enabled = false;
+      animations.enabled = true;
 
       bindm = [
         # use wev to find mouse button codes

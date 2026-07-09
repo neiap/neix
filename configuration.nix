@@ -54,7 +54,7 @@
   programs = {
     firefox.enable = true;
     hyprland.enable = true;
-
+    steam.enable = true;
     thunar = {
       enable = true;
       plugins = [
