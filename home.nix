@@ -1,53 +1,113 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
-  imports = [./hyprland.nix];
-  # Home Manager needs a bit of information about you and the
-  # paths it should manage.
-  home.username = "neia";
-  home.homeDirectory = "/home/neia";
+  imports = [ ./hyprland.nix ];
 
-  # This value determines the Home Manager release that your
-  # configuration is compatible with. This helps avoid breakage
-  # when a new Home Manager release introduces backwards
-  # incompatible changes.
-  #
-  # You can update Home Manager without changing this value. See
-  # the Home Manager release notes for a list of state version
-  # changes in each release.
-  home.stateVersion = "26.05";
-
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
-
-  programs.kitty.enable = true; # required for the default Hyprland config
-  wayland.windowManager.hyprland.enable = true; # enable Hyprland
-  wayland.windowManager.hyprland.settings = {
-    # VirtualBox has no real 3D-accelerated GPU: vboxvideo only provides KMS
-    # scanout, so any app doing real OpenGL rendering (kitty via glfw) crashes
-    # with a "wl_surface.attach: invalid arguments" protocol error. Force
-    # llvmpipe software GL for everything Hyprland execs. WLR_NO_HARDWARE_CURSORS
-    # works around the same VM's lack of a hardware cursor plane.
-    env = [
-      "WLR_NO_HARDWARE_CURSORS,1"
-      "LIBGL_ALWAYS_SOFTWARE,1"
-    ];
+  home = {
+    username = "neia";
+    homeDirectory = "/home/neia";
+    stateVersion = "26.05";
+    sessionVariables.NIXOS_OZONE_WL = "1";
   };
-  wayland.windowManager.hyprland.configType = "hyprlang";
-  # Optional, hint Electron apps to use Wayland:
-  home.sessionVariables.NIXOS_OZONE_WL = "1";
-  programs.vicinae = {
-  enable = true;
-  systemd.enable = true;
-};
 
-  # VirtualBox has no real 3D-accelerated GPU, only software (llvmpipe) rendering.
-  # Vicinae's Qt Quick window crashes the whole daemon on open with a
-  # "wl_surface.attach: invalid arguments" Wayland protocol error when it tries
-  # to use the GL/RHI backend here, so force the software Qt Quick backend.
+  programs = {
+    home-manager.enable = true;
+    kitty.enable = true;
+    fastfetch.enable = true;
+    bash.enable = true;
+    htop.enable = true;
+    vicinae = {
+      enable = true;
+      systemd.enable = true;
+    };
+    nh = {
+      enable = true;
+      flake = "/home/neia/config";
+    };
+    git = {
+      enable = true;
+      settings.user = {
+        name = "neia";
+        email = "neiap@proton.me";
+      };
+    };
+    vscodium = {
+      enable = true;
+      profiles.default = {
+        extensions = with pkgs.nix-vscode-extensions.vscode-marketplace; [
+          anthropic.claude-code
+          jnoortheen.nix-ide
+        ];
+        userSettings = {
+          # keep-sorted start block=yes newline_separated=yes
+          "nix.enableLanguageServer" = true;
+
+          "nix.hiddenLanguageServerErrors" = [
+            # keep-sorted start
+            "textDocument/codeAction"
+            "textDocument/completion"
+            "textDocument/definition"
+            "textDocument/documentHighlight"
+            "textDocument/documentLink"
+            "textDocument/documentSymbol"
+            "textDocument/hover"
+            "textDocument/inlayHint"
+            # keep-sorted end
+          ];
+
+          "nix.serverPath" = "${lib.getExe pkgs.nixd}";
+
+          "nix.serverSettings.nixd.formatting.command" = [
+            "${lib.getExe pkgs.nixfmt}"
+          ];
+
+          "nix.serverSettings.nixd.options.nixos.expr" =
+            "(builtins.getFlake \"${config.programs.nh.flake}\").nixosConfigurations.<name>.options";
+          # keep-sorted end
+        };
+      };
+    };
+  };
+
+  home.packages = [
+    pkgs.nixfmt-tree
+    pkgs.claude-code
+  ];
+
+  # This VM has no real GPU (see hyprland.nix), so LIBGL_ALWAYS_SOFTWARE=1 is
+  # forced session-wide to avoid wl_surface crashes. VSCodium is Chromium-based
+  # and would otherwise emulate GPU compositing through llvmpipe on every
+  # repaint, causing CPU spikes. Disabling hardware acceleration makes it skip
+  # GPU compositing entirely instead, which is far cheaper on a CPU rasterizer.
+  home.file.".config/VSCodium/argv.json".text = builtins.toJSON {
+    disable-hardware-acceleration = true;
+  };
+
+  wayland = {
+    windowManager = {
+      hyprland = {
+        enable = true;
+        configType = "hyprlang";
+        settings = {
+          env = [
+            "WLR_NO_HARDWARE_CURSORS,1"
+            "LIBGL_ALWAYS_SOFTWARE,1"
+          ];
+        };
+      };
+    };
+  };
+
   systemd.user.services.vicinae.Service.Environment = [
     "QSG_RHI_BACKEND=software"
     "QT_QUICK_BACKEND=software"
     "LIBGL_ALWAYS_SOFTWARE=1"
   ];
+
+
 }

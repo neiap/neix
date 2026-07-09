@@ -6,7 +6,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     disko.url = "github:nix-community/disko";
     home-manager.url = "github:nix-community/home-manager";
-
+    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
   };
 
   outputs = inputs: {
@@ -15,9 +15,13 @@
     nixosConfigurations = {
       iridium = inputs.nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs; };
-        modules = [ ./configuration.nix  inputs.disko.nixosModules.default ./disko.nix  inputs.home-manager.nixosModules.home-manager];
+        modules = [
+          ./configuration.nix
+          inputs.disko.nixosModules.default
+          ./disko.nix
+          inputs.home-manager.nixosModules.home-manager
+        ];
       };
     };
   };
 }
-
