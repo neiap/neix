@@ -96,6 +96,8 @@
   };
 
   services = {
+    easyeffects.enable = true;
+
     hyprpaper = {
       enable = true;
       settings = {
