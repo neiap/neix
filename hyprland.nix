@@ -81,7 +81,7 @@
         "$mod, A, togglegroup"
         "$mod SHIFT, A, lockactivegroup, toggle"
         "ALT, TAB, changegroupactive, f"
-        "ALT SHIFT, TAB, changegroupactive,nix b"
+        "ALT SHIFT, TAB, changegroupactive, b"
         "$mod, T, pin"
         "CTRL ALT, DELETE, exec, ${uwsmApp "hyprctl kill"}"
         ''CTRL ALT SHIFT, DELETE, exec, systemctl --user stop wayland-wm@hyprland\\x2duwsm.desktop.service''
