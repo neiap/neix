@@ -1,6 +1,5 @@
 {
   lib,
-  config,
   osConfig,
   ...
 }:
@@ -23,6 +22,17 @@
       # d -> has description, will allow you to write a description for your bind.
 
       "$mod" = "SUPER";
+
+      exec-once = [
+        "mako" # home-manager's services.mako.enable writes the config but doesn't enable its systemd unit, so start it here instead
+      ];
+
+      env = [
+        "LIBVA_DRIVER_NAME,nvidia"
+        "GBM_BACKEND,nvidia-drm"
+        "__GLX_VENDOR_LIBRARY_NAME,nvidia"
+        "__GL_VRR_ALLOWED,1"
+      ];
 
       decoration = {
         shadow = {

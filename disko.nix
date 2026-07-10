@@ -2,7 +2,7 @@
   disko.devices = {
     disk."main" = {
       type = "disk";
-      device = "/dev/sda";
+      device = "/dev/disk/by-id/nvme-CT4000P3SSD8_2330E8642866";
       content = {
         type = "gpt";
 
@@ -21,7 +21,7 @@
             size = "100%";
             content = {
               type = "luks";
-              name = "rootfs";
+              name = "luks-root";
 
               settings = {
                 allowDiscards = true;
