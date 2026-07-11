@@ -2,11 +2,15 @@
   config,
   pkgs,
   lib,
+  inputs,
   ...
 }:
 
 {
-  imports = [ ./hyprland.nix ];
+  imports = [
+    ./hyprland.nix
+    inputs.steam-config-nix.homeModules.default
+  ];
 
   home = {
     username = "neia";
@@ -36,6 +40,7 @@
         email = "neiap@proton.me";
       };
     };
+
     vscodium = {
       enable = true;
       profiles.default = {
@@ -69,6 +74,28 @@
           "nix.serverSettings.nixd.options.nixos.expr" =
             "(builtins.getFlake \"${config.programs.nh.flake}\").nixosConfigurations.<name>.options";
           # keep-sorted end
+          "editor.formatOnSave" = true;
+          "editor.guides.bracketPairs" = true;
+
+          "editor.guides.bracketPairsHorizontal" = false;
+
+          "editor.guides.highlightActiveBracketPair" = true;
+
+          "workbench.colorCustomizations" = {
+            # keep-sorted start
+            "editorBracketPairGuide.activeBackground1" = "#f38ba8";
+            "editorBracketPairGuide.activeBackground2" = "#fab387";
+            "editorBracketPairGuide.activeBackground3" = "#f9e2af";
+            "editorBracketPairGuide.activeBackground4" = "#a6e3a1";
+            "editorBracketPairGuide.activeBackground5" = "#74c7ec";
+            "editorBracketPairGuide.activeBackground6" = "#cba6f7";
+            "editorBracketPairGuide.background1" = "#f38ba899";
+            "editorBracketPairGuide.background2" = "#fab38799";
+            "editorBracketPairGuide.background3" = "#f9e2af99";
+            "editorBracketPairGuide.background4" = "#a6e3a199";
+            "editorBracketPairGuide.background5" = "#74c7ec99";
+            "editorBracketPairGuide.background6" = "#cba6f799";
+          };
         };
       };
     };
@@ -85,7 +112,6 @@
     pkgs.libva-utils
   ];
 
-
   wayland = {
     windowManager = {
       hyprland = {
@@ -93,6 +119,20 @@
         configType = "hyprlang";
         settings = {
         };
+      };
+    };
+  };
+
+  programs.steam.config = {
+    enable = true;
+    onSteamRunning = "close";
+    defaultCompatTool = pkgs.proton-ge-bin;
+
+    apps = {
+      "VRChat" = {
+        id = 438100;
+        compatTool = inputs.nixpkgs-xr.packages."x86_64-linux".proton-rtsp-bin;
+        launchOptions.env.TZ = null;
       };
     };
   };

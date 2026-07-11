@@ -52,7 +52,6 @@
   programs = {
     firefox.enable = true;
     hyprland.enable = true;
-    steam.enable = true;
     dconf.enable = true;
     thunar = {
       enable = true;
@@ -72,6 +71,14 @@
         icu
       ];
     };
+    steam = {
+      enable = true;
+      package = pkgs.steam.override {
+        extraProfile = ''
+
+        '';
+      };
+    };
   };
 
   environment.systemPackages = with pkgs; [
@@ -89,6 +96,13 @@
     gvfs.enable = true;
     tumbler.enable = true;
     xserver.videoDrivers = [ "nvidia" ];
+    wivrn = {
+      enable = true;
+      openFirewall = true;
+      autoStart = true;
+      package = (pkgs.wivrn.override { cudaSupport = true; });
+      steam.importOXRRuntimes = true;
+    };
   };
 
   hardware.nvidia.modesetting.enable = true;
@@ -107,9 +121,8 @@
   ];
 
   nixpkgs.config.allowUnfree = true;
-  
-  environment.sessionVariables.NIXPKGS_ALLOW_UNFREE = "1";
 
+  environment.sessionVariables.NIXPKGS_ALLOW_UNFREE = "1";
 
   system.stateVersion = "26.11"; # Did you read the comment?
 
