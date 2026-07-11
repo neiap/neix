@@ -110,6 +110,7 @@
     pkgs.vrcx
     pkgs.libnotify
     pkgs.libva-utils
+    pkgs.xivlauncher
   ];
 
   wayland = {

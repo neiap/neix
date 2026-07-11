@@ -96,6 +96,21 @@
     gvfs.enable = true;
     tumbler.enable = true;
     xserver.videoDrivers = [ "nvidia" ];
+    pipewire.wireplumber.extraConfig."51-deprioritize-webcam-mic" = {
+      "monitor.alsa.rules" = [
+        {
+          matches = [
+            { "node.name" = "~alsa_input.usb-046d_C922_Pro_Stream_Webcam.*"; }
+          ];
+          actions = {
+            update-props = {
+              "priority.session" = 0;
+              "priority.driver" = 0;
+            };
+          };
+        }
+      ];
+    };
     wivrn = {
       enable = true;
       openFirewall = true;
