@@ -111,6 +111,14 @@
     pkgs.libnotify
     pkgs.libva-utils
     pkgs.xivlauncher
+    pkgs.wayvr
+    (pkgs.prismlauncher.override {
+      jdks = with pkgs; [
+        temurin-bin
+        temurin-bin-17
+        temurin-bin-25
+      ];
+    })
   ];
 
   wayland = {
@@ -133,7 +141,12 @@
       "VRChat" = {
         id = 438100;
         compatTool = inputs.nixpkgs-xr.packages."x86_64-linux".proton-rtsp-bin;
-        launchOptions.env.TZ = null;
+        launchOptions.env = {
+          TZ = null;
+          PROTON_VR_RUNTIME = "${pkgs.xrizer}/lib/xrizer";
+          VR_OVERRIDE = "${pkgs.xrizer}/lib/xrizer";
+          XRIZER_TRACKER_SERIALS = "LHR-47B90BBC;LHR-383B0B7D;LHR-DA140F05;LHR-D03ECB7F";
+        };
       };
     };
   };

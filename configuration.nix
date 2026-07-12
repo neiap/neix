@@ -116,14 +116,17 @@
     wivrn = {
       enable = true;
       openFirewall = true;
-      autoStart = true;
       package = (pkgs.wivrn.override { cudaSupport = true; });
       steam.importOXRRuntimes = true;
+      monadoEnvironment = {
+        LH_DISCOVER_WAIT_MS = "15000";
+        VR_OVERRIDE = "${pkgs.xrizer}/lib/xrizer";
+        PROTON_VR_RUNTIME = "${pkgs.xrizer}/lib/xrizer";
+      };
       config = {
         enable = true;
         json = {
           "use-steamvr-lh" = true;
-          "openvr-compat-path" = null;
         };
       };
     };
@@ -131,7 +134,7 @@
 
   hardware.steam-hardware.enable = true;
   hardware.nvidia.modesetting.enable = true;
-  hardware.nvidia.open = false;
+  hardware.nvidia.open = true;
 
   nix = {
     settings = {
