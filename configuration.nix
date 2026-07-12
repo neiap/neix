@@ -83,6 +83,7 @@
 
   environment.systemPackages = with pkgs; [
     git
+    motoc
   ];
 
   services = {
@@ -111,15 +112,24 @@
         }
       ];
     };
+
     wivrn = {
       enable = true;
       openFirewall = true;
       autoStart = true;
       package = (pkgs.wivrn.override { cudaSupport = true; });
       steam.importOXRRuntimes = true;
+      config = {
+        enable = true;
+        json = {
+          "use-steamvr-lh" = true;
+          "openvr-compat-path" = null;
+        };
+      };
     };
   };
 
+  hardware.steam-hardware.enable = true;
   hardware.nvidia.modesetting.enable = true;
   hardware.nvidia.open = false;
 
