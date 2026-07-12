@@ -45,7 +45,6 @@
     ];
     initialPassword = "meow";
     openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJpJ8QLhZFEv9+/uArRW95YWDa8JEu2sbhmQ2gUnT9Xx gravy@FTP"
     ];
   };
 
