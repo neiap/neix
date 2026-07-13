@@ -33,6 +33,9 @@
     btop.enable = true;
     nushell = {
       enable = true;
+      shellAliases = {
+        start-hyprland = "uwsm start -- /run/current-system/sw/bin/start-hyprland";
+      };
       extraEnv = ''
         $env.PROMPT_COMMAND = {||
           $"(ansi purple_bold)($env.USER)(ansi reset)@(ansi cyan_bold)(sys host | get hostname)(ansi reset)"
@@ -52,6 +55,54 @@
       settings.user = {
         name = "neiap";
         email = "neiap@proton.me";
+      };
+    };
+
+    firefox = {
+      enable = true;
+      package = null; # already installed via programs.firefox.enable in configuration.nix
+
+      profiles.default.search = {
+        force = true;
+        engines = {
+          kagi = {
+            name = "Kagi";
+            urls = [ { template = "https://kagi.com/search?q={searchTerms}"; } ];
+            definedAliases = [ ":kg" ];
+          };
+
+          nixos-options = {
+            name = "NixOS Options";
+            urls = [
+              {
+                template = "https://search.nixos.org/options?channel=unstable&from=0&size=50&sort=relevance&type=packages&query={searchTerms}";
+              }
+            ];
+            definedAliases = [ ":no" ];
+          };
+
+          nixpkgs = {
+            name = "Nix Packages";
+            urls = [
+              {
+                template = "https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&type=packages&query={searchTerms}";
+              }
+            ];
+            definedAliases = [ ":np" ];
+          };
+
+          proton-db = {
+            name = "ProtonDB";
+            urls = [ { template = "https://www.protondb.com/search?q={searchTerms}"; } ];
+            definedAliases = [ ":db" ];
+          };
+
+          youtube = {
+            name = "Youtube";
+            urls = [ { template = "https://www.youtube.com/results?search_query={searchTerms}"; } ];
+            definedAliases = [ ":yt" ];
+          };
+        };
       };
     };
 

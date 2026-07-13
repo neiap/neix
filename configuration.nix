@@ -54,6 +54,14 @@
   programs = {
     firefox.enable = true;
     hyprland.enable = true;
+    uwsm = {
+      enable = true;
+      waylandCompositors.hyprland = {
+        prettyName = "Hyprland";
+        comment = "Hyprland compositor managed by UWSM";
+        binPath = "/run/current-system/sw/bin/start-hyprland";
+      };
+    };
     dconf.enable = true;
     thunar = {
       enable = true;
@@ -112,6 +120,13 @@
             };
           };
         }
+      ];
+      default.clock.rate = 44100;
+      default.clock.allowed-rates = [
+        44100
+        48000
+        88200
+        96000
       ];
     };
 
