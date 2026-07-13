@@ -24,7 +24,7 @@
     kitty.enable = true;
     fastfetch.enable = true;
     bash.enable = true;
-    htop.enable = true;
+    btop.enable = true;
     vicinae = {
       enable = true;
       systemd.enable = true;
