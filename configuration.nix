@@ -16,7 +16,10 @@
 
   networking = {
     hostName = "iridium";
-    networkmanager.enable = true;
+    networkmanager = {
+      enable = true;
+      dns = "dnsmasq";
+    };
   };
 
   time.timeZone = "Australia/NSW";
