@@ -17,6 +17,12 @@
     homeDirectory = "/home/neia";
     stateVersion = "26.05";
     sessionVariables.NIXOS_OZONE_WL = "1";
+    file.".config/wivrn/config.json".text = builtins.toJSON {
+      # wivrn-dashboard reads this directly (unlike wivrn.service, which uses
+      # its own Nix-generated config from configuration.nix); without it the
+      # SteamVR lighthouse driver never starts and trackers never show up.
+      "use-steamvr-lh" = true;
+    };
   };
 
   programs = {
@@ -25,6 +31,14 @@
     fastfetch.enable = true;
     bash.enable = true;
     btop.enable = true;
+    nushell = {
+      enable = true;
+      extraEnv = ''
+        $env.PROMPT_COMMAND = {||
+          $"(ansi purple_bold)($env.USER)(ansi reset)@(ansi cyan_bold)(sys host | get hostname)(ansi reset)"
+        }
+      '';
+    };
     vicinae = {
       enable = true;
       systemd.enable = true;

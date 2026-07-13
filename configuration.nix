@@ -46,7 +46,10 @@
     initialPassword = "meow";
     openssh.authorizedKeys.keys = [
     ];
+    shell = pkgs.nushell;
   };
+
+  environment.shells = [ pkgs.nushell ];
 
   programs = {
     firefox.enable = true;
