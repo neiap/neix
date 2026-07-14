@@ -192,6 +192,7 @@
     pkgs.discord
     pkgs.grimblast
     pkgs.wl-clipboard
+    pkgs.playerctl
     pkgs.vrcx
     pkgs.libnotify
     pkgs.libva-utils
@@ -239,7 +240,15 @@
 
   services = {
     easyeffects.enable = true;
-    mako.enable = true;
+    mako = {
+      enable = true;
+      settings = {
+        "app-name=Sidra" = {
+          default-timeout = 5000;
+          ignore-timeout = true;
+        };
+      };
+    };
     hyprpaper = {
       enable = true;
       settings = {

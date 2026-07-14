@@ -50,8 +50,8 @@
       };
 
       ecosystem = {
-          no_update_news = true;
-          no_donation_nag = true;
+        no_update_news = true;
+        no_donation_nag = true;
       };
 
       monitorv2 = [
@@ -198,6 +198,9 @@
       bindl = [
         # media controls
         ", XF86AudioPlay, exec, playerctl play-pause"
+        ", XF86AudioNext, exec, playerctl next"
+        ", XF86AudioPrev, exec, playerctl previous"
+        ", XF86AudioStop, exec, playerctl stop"
 
         # volume
         ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
@@ -208,10 +211,6 @@
         # volume
         ", XF86AudioRaiseVolume, exec, wpctl set-volume -l '1.0' @DEFAULT_AUDIO_SINK@ 6%+"
         ", XF86AudioLowerVolume, exec, wpctl set-volume -l '1.0' @DEFAULT_AUDIO_SINK@ 6%-"
-
-        # backlight
-        ", XF86MonBrightnessUp, exec, brillo -q -u 300000 -A 5"
-        ", XF86MonBrightnessDown, exec, brillo -q -u 300000 -U 5"
       ];
     };
 }
