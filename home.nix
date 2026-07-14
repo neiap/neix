@@ -197,6 +197,7 @@
     pkgs.libva-utils
     pkgs.xivlauncher
     pkgs.wayvr
+    inputs.sidra.packages.x86_64-linux.default
     (pkgs.prismlauncher.override {
       jdks = with pkgs; [
         temurin-bin
