@@ -235,6 +235,12 @@
           XRIZER_TRACKER_SERIALS = "LHR-47B90BBC;LHR-383B0B7D;LHR-DA140F05;LHR-D03ECB7F";
         };
       };
+      "Counter Strike 2" = {
+        id = 730;
+        launchOptions.env = {
+          SDL_VIDEO_DRIVER = "wayland";
+        };
+      };
     };
   };
 
