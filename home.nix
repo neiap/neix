@@ -9,6 +9,9 @@
 {
   imports = [
     ./hyprland.nix
+    ./applications/firefox.nix
+    ./applications/vscodium.nix
+    ./applications/steam.nix
     inputs.steam-config-nix.homeModules.default
   ];
 
@@ -61,129 +64,6 @@
         email = "neiap@proton.me";
       };
     };
-
-    firefox = {
-      enable = true;
-      package = null; # already installed via programs.firefox.enable in configuration.nix
-
-      profiles.default = {
-        path = "6u0gf2tl.default";
-
-        search = {
-          force = true;
-          default = "kagi";
-          engines = {
-            kagi = {
-              name = "Kagi";
-              urls = [ { template = "https://kagi.com/search?q={searchTerms}"; } ];
-              definedAliases = [ ":kg" ];
-            };
-
-            nixos-options = {
-              name = "NixOS Options";
-              urls = [
-                {
-                  template = "https://search.nixos.org/options?channel=unstable&from=0&size=50&sort=relevance&type=packages&query={searchTerms}";
-                }
-              ];
-              definedAliases = [ ":no" ];
-            };
-
-            nixpkgs = {
-              name = "Nix Packages";
-              urls = [
-                {
-                  template = "https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&type=packages&query={searchTerms}";
-                }
-              ];
-              definedAliases = [ ":np" ];
-            };
-
-            noogle = {
-              name = "Noogle";
-              urls = [ { template = "https://noogle.dev/q?term={searchTerms}"; } ];
-              definedAliases = [ ":ng" ];
-            };
-
-            proton-db = {
-              name = "ProtonDB";
-              urls = [ { template = "https://www.protondb.com/search?q={searchTerms}"; } ];
-              definedAliases = [ ":pd" ];
-            };
-
-            youtube = {
-              name = "Youtube";
-              urls = [ { template = "https://www.youtube.com/results?search_query={searchTerms}"; } ];
-              definedAliases = [ ":yt" ];
-            };
-
-            "Wikipedia".metaData.hidden = true;
-            "bing".metaData.hidden = true;
-            "ddg".metaData.hidden = true;
-            "google".metaData.hidden = true;
-          };
-        };
-      };
-    };
-
-    vscodium = {
-      enable = true;
-      profiles.default = {
-        extensions = with pkgs.nix-vscode-extensions.vscode-marketplace; [
-          anthropic.claude-code
-          jnoortheen.nix-ide
-        ];
-        userSettings = {
-          # keep-sorted start block=yes newline_separated=yes
-          "nix.enableLanguageServer" = true;
-
-          "nix.hiddenLanguageServerErrors" = [
-            # keep-sorted start
-            "textDocument/codeAction"
-            "textDocument/completion"
-            "textDocument/definition"
-            "textDocument/documentHighlight"
-            "textDocument/documentLink"
-            "textDocument/documentSymbol"
-            "textDocument/hover"
-            "textDocument/inlayHint"
-            # keep-sorted end
-          ];
-
-          "nix.serverPath" = "${lib.getExe pkgs.nixd}";
-
-          "nix.serverSettings.nixd.formatting.command" = [
-            "${lib.getExe pkgs.nixfmt}"
-          ];
-
-          "nix.serverSettings.nixd.options.nixos.expr" =
-            "(builtins.getFlake \"${config.programs.nh.flake}\").nixosConfigurations.<name>.options";
-          # keep-sorted end
-          "editor.formatOnSave" = true;
-          "editor.guides.bracketPairs" = true;
-
-          "editor.guides.bracketPairsHorizontal" = false;
-
-          "editor.guides.highlightActiveBracketPair" = true;
-
-          "workbench.colorCustomizations" = {
-            # keep-sorted start
-            "editorBracketPairGuide.activeBackground1" = "#f38ba8";
-            "editorBracketPairGuide.activeBackground2" = "#fab387";
-            "editorBracketPairGuide.activeBackground3" = "#f9e2af";
-            "editorBracketPairGuide.activeBackground4" = "#a6e3a1";
-            "editorBracketPairGuide.activeBackground5" = "#74c7ec";
-            "editorBracketPairGuide.activeBackground6" = "#cba6f7";
-            "editorBracketPairGuide.background1" = "#f38ba899";
-            "editorBracketPairGuide.background2" = "#fab38799";
-            "editorBracketPairGuide.background3" = "#f9e2af99";
-            "editorBracketPairGuide.background4" = "#a6e3a199";
-            "editorBracketPairGuide.background5" = "#74c7ec99";
-            "editorBracketPairGuide.background6" = "#cba6f799";
-          };
-        };
-      };
-    };
   };
 
   home.packages = [
@@ -215,38 +95,6 @@
         enable = true;
         configType = "hyprlang";
         settings = {
-        };
-      };
-    };
-  };
-
-  programs.steam.config = {
-    enable = true;
-    onSteamRunning = "close";
-    defaultCompatTool = pkgs.proton-ge-bin;
-
-    apps = {
-      "VRChat" = {
-        id = 438100;
-        compatTool = inputs.nixpkgs-xr.packages."x86_64-linux".proton-rtsp-bin;
-        launchOptions.env = {
-          TZ = null;
-          PROTON_VR_RUNTIME = "${pkgs.xrizer}/lib/xrizer";
-          VR_OVERRIDE = "${pkgs.xrizer}/lib/xrizer";
-          XRIZER_TRACKER_SERIALS = "LHR-47B90BBC;LHR-383B0B7D;LHR-DA140F05;LHR-D03ECB7F";
-        };
-      };
-      "Counter Strike 2" = {
-        id = 730;
-        launchOptions.env = {
-          SDL_VIDEO_DRIVER = "wayland";
-        };
-      };
-      "Elden Ring" = {
-        id = 1245620;
-        launchOptions.env = {
-          PROTON_ENABLE_NVAPI = "1";
-          DXVK_ASYNC = "1";
         };
       };
     };

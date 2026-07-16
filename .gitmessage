@@ -1,0 +1,13 @@
+
+
+# type(scope): summary   e.g. fix(audio): stop crackling
+#
+# types:  add, fix, update, remove, refactor
+# scope:  the module/dir touched, e.g. hyprland, steam, firefox, audio, network
+#
+# Keep the summary short and in imperative mood ("add", not "added").
+# One change per commit where practical - split unrelated changes into
+# separate commits instead of joining them with commas.
+#
+# Optional: add a blank line below, then a sentence or two on *why*
+# if it's not obvious from the change itself.
