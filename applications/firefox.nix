@@ -9,7 +9,7 @@
 
       search = {
         force = true;
-        default = "kagi";
+        default = "ddg";
         engines = {
           kagi = {
             name = "Kagi";
@@ -57,7 +57,6 @@
 
           "Wikipedia".metaData.hidden = true;
           "bing".metaData.hidden = true;
-          "ddg".metaData.hidden = true;
           "google".metaData.hidden = true;
         };
       };
