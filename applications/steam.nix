@@ -23,9 +23,6 @@
       };
       "Counter Strike 2" = {
         id = 730;
-        launchOptions.env = {
-          SDL_VIDEO_DRIVER = "wayland";
-        };
       };
       "Elden Ring" = {
         id = 1245620;
