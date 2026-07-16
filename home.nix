@@ -111,6 +111,7 @@
         };
       };
     };
+
     hyprpaper = {
       enable = true;
       settings = {
