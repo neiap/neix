@@ -50,6 +50,10 @@
         gaps_out = 6;
       };
 
+      input = {
+        numlock_by_default = true;
+      };
+
       ecosystem = {
         no_update_news = true;
         no_donation_nag = true;
