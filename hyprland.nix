@@ -24,7 +24,8 @@
       "$mod" = "SUPER";
 
       exec-once = [
-        "mako" # home-manager's services.mako.enable writes the config but doesn't enable its systemd unit, so start it here instead
+        "mako"
+        "xrandr --output DP-2 --primary"
       ];
 
       env = [
@@ -133,7 +134,7 @@
         # cycle workspaces
         "$mod, bracketleft, workspace, m-1"
         "$mod, bracketright, workspace, m+1"
-        ",mouse:275, workspace, m-1" # two buttons on the side of my mouse
+        ",mouse:275, workspace, m-1" # # dibbys mouse keys - look to change to your own
         ",mouse:276, workspace, m+1"
 
         # cycle monitors
@@ -186,6 +187,12 @@
         "8"
         "9"
       ]);
+
+      windowrule = [
+        # elden ring fullscreen fix
+        "match:class ^(steam_app_1245620)$, float on"
+        "match:class ^(steam_app_1245620)$, fullscreen on"
+      ];
 
       binde = [
         # resize with arrowkeys

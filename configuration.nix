@@ -156,6 +156,8 @@
   hardware.nvidia.modesetting.enable = true;
   hardware.nvidia.open = true;
 
+  security.rtkit.enable = true;
+
   nix = {
     settings = {
       experimental-features = "nix-command flakes";

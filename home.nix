@@ -187,6 +187,7 @@
   };
 
   home.packages = [
+    pkgs.xrandr
     pkgs.nixfmt-tree
     pkgs.claude-code
     pkgs.discord
@@ -239,6 +240,13 @@
         id = 730;
         launchOptions.env = {
           SDL_VIDEO_DRIVER = "wayland";
+        };
+      };
+      "Elden Ring" = {
+        id = 1245620;
+        launchOptions.env = {
+          PROTON_ENABLE_NVAPI = "1";
+          DXVK_ASYNC = "1";
         };
       };
     };
