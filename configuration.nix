@@ -97,6 +97,7 @@
   environment.systemPackages = with pkgs; [
     git
     motoc
+    gimp
   ];
 
   services = {
