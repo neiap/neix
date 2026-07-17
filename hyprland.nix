@@ -129,7 +129,7 @@
 
         # screenshot
         ## area
-        ", PRINT, exec, ${uwsmSingleApp "grimblast"} --notify copy area"
+        #", PRINT, exec, ${uwsmSingleApp "grimblast"} --notify copy area"
         "$mod SHIFT, S, exec, ${uwsmSingleApp "grimblast"} --notify copy area"
         ## current screen
         "CTRL, PRINT, exec, ${uwsmSingleApp "grimblast"} --notify --cursor copy output"
