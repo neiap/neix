@@ -81,6 +81,8 @@
     pkgs.wayvr
     pkgs.gimp
     pkgs.motoc
+    pkgs.file-roller
+    pkgs.p7zip-rar
     pkgs.ayugram-desktop
     inputs.sidra.packages.x86_64-linux.default
     (pkgs.prismlauncher.override {
