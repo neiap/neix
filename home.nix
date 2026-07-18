@@ -79,6 +79,8 @@
     pkgs.libva-utils
     pkgs.xivlauncher
     pkgs.wayvr
+    pkgs.gimp
+    pkgs.motoc
     inputs.sidra.packages.x86_64-linux.default
     (pkgs.prismlauncher.override {
       jdks = with pkgs; [
