@@ -81,6 +81,7 @@
     pkgs.wayvr
     pkgs.gimp
     pkgs.motoc
+    pkgs.ayugram-desktop
     inputs.sidra.packages.x86_64-linux.default
     (pkgs.prismlauncher.override {
       jdks = with pkgs; [
