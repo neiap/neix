@@ -155,6 +155,8 @@
   hardware.nvidia.modesetting.enable = true;
   hardware.nvidia.open = true;
 
+  powerManagement.cpuFreqGovernor = "performance";
+
   security.rtkit.enable = true;
 
   nix = {
