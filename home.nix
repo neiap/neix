@@ -81,6 +81,8 @@
     pkgs.wayvr
     pkgs.gimp
     pkgs.motoc
+    pkgs.unityhub
+    pkgs.alcom
     pkgs.file-roller
     pkgs.p7zip-rar
     pkgs.ayugram-desktop
