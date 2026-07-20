@@ -189,6 +189,7 @@
     pkgs.file-roller
     pkgs.p7zip-rar
     pkgs.ayugram-desktop
+    pkgs.mpv
     inputs.sidra.packages.x86_64-linux.default
     (pkgs.prismlauncher.override {
       jdks = with pkgs; [
