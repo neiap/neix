@@ -192,6 +192,7 @@
     pkgs.mpv
     pkgs.blender
     pkgs.ffmpeg
+    pkgs.thunderbird
     inputs.sidra.packages.x86_64-linux.default
     (pkgs.prismlauncher.override {
       jdks = with pkgs; [
