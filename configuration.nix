@@ -155,6 +155,18 @@
   hardware.nvidia.modesetting.enable = true;
   hardware.nvidia.open = true;
 
+  hardware.graphics = {
+    enable = true;
+    extraPackages = [
+      pkgs.nvidia-vaapi-driver
+    ];
+  };
+
+  environment.sessionVariables = {
+    NVD_BACKEND = "direct";
+    LIBVA_DRIVER_NAME = "nvidia";
+  };
+
   powerManagement.cpuFreqGovernor = "performance";
 
   security.rtkit.enable = true;

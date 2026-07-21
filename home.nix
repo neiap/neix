@@ -13,8 +13,10 @@
     ./applications/vscodium.nix
     ./applications/steam.nix
     ./applications/moonlight-config.nix
+    ./applications/catppuccin-gtk.nix
     inputs.steam-config-nix.homeModules.default
     inputs.moonlight.homeModules.default
+    inputs.catppuccin.homeModules.catppuccin
   ];
 
   home = {
@@ -33,6 +35,18 @@
       @fDownloadRateImprovementToAddAnotherConnection 1.0
     '';
   };
+
+  catppuccin = {
+    # only the gtk workaround module is enabled below; avoid auto-theming
+    # every other program home-manager's catppuccin/nix module supports
+    enable = false;
+    autoEnable = false;
+    flavor = "mocha";
+    accent = "mauve";
+  };
+
+  gtk.enable = true;
+  catppuccin-workarounds.gtk.enable = true;
 
   programs = {
     home-manager.enable = true;
