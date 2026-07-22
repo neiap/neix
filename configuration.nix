@@ -109,27 +109,38 @@
     gvfs.enable = true;
     tumbler.enable = true;
     xserver.videoDrivers = [ "nvidia" ];
-    pipewire.wireplumber.extraConfig."51-deprioritize-webcam-mic" = {
-      "monitor.alsa.rules" = [
-        {
-          matches = [
-            { "node.name" = "~alsa_input.usb-046d_C922_Pro_Stream_Webcam.*"; }
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      wireplumber = {
+        enable = true;
+        extraConfig."51-deprioritize-webcam-mic" = {
+          "monitor.alsa.rules" = [
+            {
+              matches = [
+                { "node.name" = "~alsa_input.usb-046d_C922_Pro_Stream_Webcam.*"; }
+              ];
+              actions = {
+                update-props = {
+                  "priority.session" = 0;
+                  "priority.driver" = 0;
+                };
+              };
+            }
           ];
-          actions = {
-            update-props = {
-              "priority.session" = 0;
-              "priority.driver" = 0;
-            };
-          };
-        }
-      ];
-      default.clock.rate = 44100;
-      default.clock.allowed-rates = [
-        44100
-        48000
-        88200
-        96000
-      ];
+          default.clock.rate = 44100;
+          default.clock.allowed-rates = [
+            44100
+            48000
+            88200
+            96000
+          ];
+          default.clock.quantum = 1024;
+          default.clock.min-quantum = 1024;
+        };
+      };
     };
 
     wivrn = {
@@ -154,6 +165,7 @@
   hardware.steam-hardware.enable = true;
   hardware.nvidia.modesetting.enable = true;
   hardware.nvidia.open = true;
+  hardware.nvidia.package = pkgs.linuxPackages.nvidiaPackages.legacy_580;
 
   hardware.graphics = {
     enable = true;
