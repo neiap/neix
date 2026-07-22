@@ -14,6 +14,7 @@
     ./applications/steam.nix
     ./applications/moonlight-config.nix
     ./applications/catppuccin-gtk.nix
+    ./applications/vrcx
     inputs.steam-config-nix.homeModules.default
     inputs.moonlight.homeModules.default
     inputs.catppuccin.homeModules.catppuccin
@@ -191,7 +192,6 @@
     pkgs.grimblast
     pkgs.wl-clipboard
     pkgs.playerctl
-    pkgs.vrcx
     pkgs.libnotify
     pkgs.libva-utils
     pkgs.xivlauncher
