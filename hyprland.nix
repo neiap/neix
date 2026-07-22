@@ -33,6 +33,7 @@
         "GBM_BACKEND,nvidia-drm"
         "__GLX_VENDOR_LIBRARY_NAME,nvidia"
         "__GL_VRR_ALLOWED,1"
+        "__GL_THREADED_OPTIMIZATIONS,0"
       ];
 
       decoration = {

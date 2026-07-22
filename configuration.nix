@@ -165,7 +165,7 @@
   hardware.steam-hardware.enable = true;
   hardware.nvidia.modesetting.enable = true;
   hardware.nvidia.open = true;
-  hardware.nvidia.package = pkgs.linuxPackages.nvidiaPackages.legacy_580;
+  hardware.nvidia.package = pkgs.linuxPackages.nvidiaPackages.production;
 
   hardware.graphics = {
     enable = true;
