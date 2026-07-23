@@ -43,7 +43,6 @@
     autoEnable = false;
     flavor = "mocha";
     accent = "mauve";
-
     kitty.enable = true;
   };
 
@@ -60,6 +59,8 @@
       enable = true;
       shellAliases = {
         start-hyprland = "uwsm start -- /run/current-system/sw/bin/start-hyprland";
+        # command to download catpuccin userstyles for import into stylus for firefox
+        ctpuserstyles = ''bash -c "curl -sL https://github.com/catppuccin/userstyles/releases/download/all-userstyles-export/import.json | sed -E 's/\"default\":\"(rosewater|flamingo|pink|mauve|red|maroon|peach|green|yellow|teal|blue|sapphire|grey|lavender)\"/\"default\":\"mauve\"/g' > ~/import.json"'';
       };
       extraEnv = ''
         $env.PROMPT_COMMAND = {||

@@ -1,19 +1,37 @@
 { pkgs, ... }:
 let
-  catppuccinMochaMauveAddonId = "{d090b7ee-a385-4d54-b9a4-f7164d17756d}";
-  catppuccinMochaMauveTheme = pkgs.stdenv.mkDerivation {
-    name = "catppuccin-mocha-mauve-theme";
-    src = pkgs.fetchurl {
-      url = "https://addons.mozilla.org/firefox/downloads/file/3954870/catppuccin_mocha_mauve-2.0.xpi";
-      sha256 = "sha256-FDBkFFwYp93cvnxFsWK/8xjKqj7TpEhEDm26fSe7ThY=";
+  mkFirefoxXpiAddon =
+    {
+      name,
+      addonId,
+      url,
+      sha256,
+    }:
+    pkgs.stdenv.mkDerivation {
+      inherit name;
+      src = pkgs.fetchurl { inherit url sha256; };
+      passthru.addonId = addonId;
+      dontUnpack = true;
+      installPhase = ''
+        dst=$out/share/mozilla/extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}
+        mkdir -p "$dst"
+        install -m644 "$src" "$dst/${addonId}.xpi"
+      '';
     };
-    passthru.addonId = catppuccinMochaMauveAddonId;
-    dontUnpack = true;
-    installPhase = ''
-      dst=$out/share/mozilla/extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}
-      mkdir -p "$dst"
-      install -m644 "$src" "$dst/${catppuccinMochaMauveAddonId}.xpi"
-    '';
+
+  catppuccinMochaMauveTheme = mkFirefoxXpiAddon {
+    name = "catppuccin-mocha-mauve-theme";
+    addonId = "{d090b7ee-a385-4d54-b9a4-f7164d17756d}";
+    url = "https://addons.mozilla.org/firefox/downloads/file/3954870/catppuccin_mocha_mauve-2.0.xpi";
+    sha256 = "sha256-FDBkFFwYp93cvnxFsWK/8xjKqj7TpEhEDm26fSe7ThY=";
+  };
+
+  # userstyles manager, for catppuccin/userstyles' github style (see ctpuserstyles alias)
+  stylus = mkFirefoxXpiAddon {
+    name = "stylus-extension";
+    addonId = "{7a7a4a92-a2a0-41d1-9fd7-1e92480d612d}";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4907275/styl_us-2.4.8.xpi";
+    sha256 = "sha256-RVQmiQo4vT7lEQABEuzlFnX4u8IemIviFww65pAMvt8=";
   };
 in
 {
@@ -23,7 +41,10 @@ in
 
     profiles.default = {
       path = "6u0gf2tl.default";
-      extensions.packages = [ catppuccinMochaMauveTheme ];
+      extensions.packages = [
+        catppuccinMochaMauveTheme
+        stylus
+      ];
       settings."extensions.autoDisableScopes" = 0;
 
       search = {
