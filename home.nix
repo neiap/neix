@@ -15,6 +15,7 @@
     ./applications/moonlight-config.nix
     ./applications/catppuccin-gtk.nix
     ./applications/vrcx
+    ./applications/sidra
     inputs.steam-config-nix.homeModules.default
     inputs.moonlight.homeModules.default
     inputs.catppuccin.homeModules.catppuccin
