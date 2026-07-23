@@ -106,6 +106,14 @@
         '';
       };
     };
+
+    nh = {
+      enable = true;
+      clean = {
+        enable = true;
+        extraArgs = "--keep-since 30d";
+      };
+    };
   };
 
   services = {
@@ -195,6 +203,7 @@
     settings = {
       experimental-features = "nix-command flakes";
       flake-registry = "";
+      auto-optimise-store = true;
     };
     channel.enable = false;
   };
