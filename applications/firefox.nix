@@ -1,11 +1,30 @@
-{ ... }:
+{ pkgs, ... }:
+let
+  catppuccinMochaMauveAddonId = "{d090b7ee-a385-4d54-b9a4-f7164d17756d}";
+  catppuccinMochaMauveTheme = pkgs.stdenv.mkDerivation {
+    name = "catppuccin-mocha-mauve-theme";
+    src = pkgs.fetchurl {
+      url = "https://addons.mozilla.org/firefox/downloads/file/3954870/catppuccin_mocha_mauve-2.0.xpi";
+      sha256 = "sha256-FDBkFFwYp93cvnxFsWK/8xjKqj7TpEhEDm26fSe7ThY=";
+    };
+    passthru.addonId = catppuccinMochaMauveAddonId;
+    dontUnpack = true;
+    installPhase = ''
+      dst=$out/share/mozilla/extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}
+      mkdir -p "$dst"
+      install -m644 "$src" "$dst/${catppuccinMochaMauveAddonId}.xpi"
+    '';
+  };
+in
 {
   programs.firefox = {
     enable = true;
-    package = null; # already installed via programs.firefox.enable in configuration.nix
+    package = null;
 
     profiles.default = {
       path = "6u0gf2tl.default";
+      extensions.packages = [ catppuccinMochaMauveTheme ];
+      settings."extensions.autoDisableScopes" = 0;
 
       search = {
         force = true;
