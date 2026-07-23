@@ -25,6 +25,10 @@
   time.timeZone = "Australia/NSW";
   i18n.defaultLocale = "en_AU.UTF-8";
 
+  powerManagement.cpuFreqGovernor = "performance";
+  security.rtkit.enable = true;
+  nixpkgs.config.allowUnfree = true;
+
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
@@ -34,6 +38,8 @@
 
   users.users.neia = {
     isNormalUser = true;
+    shell = pkgs.nushell;
+    initialPassword = "meow";
     extraGroups = [
       "wheel"
       "audio"
@@ -46,17 +52,26 @@
       "podman"
       "video"
     ];
-    initialPassword = "meow";
-    openssh.authorizedKeys.keys = [
-    ];
-    shell = pkgs.nushell;
   };
 
-  environment.shells = [ pkgs.nushell ];
+  environment = {
+    shells = [ pkgs.nushell ];
+    sessionVariables = {
+      NVD_BACKEND = "direct";
+      LIBVA_DRIVER_NAME = "nvidia";
+      NIXPKGS_ALLOW_UNFREE = "1";
+    };
+    systemPackages = with pkgs; [
+      git
+    ];
+  };
 
   programs = {
     firefox.enable = true;
     hyprland.enable = true;
+    dconf.enable = true;
+    xfconf.enable = true;
+
     uwsm = {
       enable = true;
       waylandCompositors.hyprland = {
@@ -65,14 +80,13 @@
         binPath = "/run/current-system/sw/bin/start-hyprland";
       };
     };
-    dconf.enable = true;
+
     thunar = {
       enable = true;
       plugins = [
         pkgs.thunar-archive-plugin
       ];
     };
-    xfconf.enable = true;
 
     nix-ld = {
       enable = true;
@@ -94,11 +108,11 @@
     };
   };
 
-  environment.systemPackages = with pkgs; [
-    git
-  ];
-
   services = {
+    gvfs.enable = true;
+    tumbler.enable = true;
+    xserver.videoDrivers = [ "nvidia" ];
+
     openssh = {
       enable = true;
       settings = {
@@ -106,9 +120,7 @@
         PasswordAuthentication = false;
       };
     };
-    gvfs.enable = true;
-    tumbler.enable = true;
-    xserver.videoDrivers = [ "nvidia" ];
+
     pipewire = {
       enable = true;
       alsa.enable = true;
@@ -148,11 +160,13 @@
       openFirewall = true;
       package = (pkgs.wivrn.override { cudaSupport = true; });
       steam.importOXRRuntimes = true;
+
       monadoEnvironment = {
         LH_DISCOVER_WAIT_MS = "15000";
         VR_OVERRIDE = "${pkgs.xrizer}/lib/xrizer";
         PROTON_VR_RUNTIME = "${pkgs.xrizer}/lib/xrizer";
       };
+
       config = {
         enable = true;
         json = {
@@ -162,26 +176,20 @@
     };
   };
 
-  hardware.steam-hardware.enable = true;
-  hardware.nvidia.modesetting.enable = true;
-  hardware.nvidia.open = true;
-  hardware.nvidia.package = pkgs.linuxPackages.nvidiaPackages.production;
-
-  hardware.graphics = {
-    enable = true;
-    extraPackages = [
-      pkgs.nvidia-vaapi-driver
-    ];
+  hardware = {
+    steam-hardware.enable = true;
+    nvidia = {
+      modesetting.enable = true;
+      open = true;
+      package = pkgs.linuxPackages.nvidiaPackages.production;
+    };
+    graphics = {
+      enable = true;
+      extraPackages = [
+        pkgs.nvidia-vaapi-driver
+      ];
+    };
   };
-
-  environment.sessionVariables = {
-    NVD_BACKEND = "direct";
-    LIBVA_DRIVER_NAME = "nvidia";
-  };
-
-  powerManagement.cpuFreqGovernor = "performance";
-
-  security.rtkit.enable = true;
 
   nix = {
     settings = {
@@ -194,10 +202,6 @@
   nixpkgs.overlays = [
     inputs.nix-vscode-extensions.overlays.default
   ];
-
-  nixpkgs.config.allowUnfree = true;
-
-  environment.sessionVariables.NIXPKGS_ALLOW_UNFREE = "1";
 
   system.stateVersion = "26.11"; # Did you read the comment?
 
