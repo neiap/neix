@@ -39,12 +39,12 @@
   };
 
   catppuccin = {
-    # only the gtk workaround module is enabled below; avoid auto-theming
-    # every other program home-manager's catppuccin/nix module supports
-    enable = false;
+    enable = true;
     autoEnable = false;
     flavor = "mocha";
     accent = "mauve";
+
+    kitty.enable = true;
   };
 
   gtk.enable = true;
