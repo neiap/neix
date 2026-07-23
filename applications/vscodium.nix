@@ -10,6 +10,7 @@
     profiles.default = {
       extensions = with pkgs.nix-vscode-extensions.vscode-marketplace; [
         anthropic.claude-code
+        catppuccin.catppuccin-vsc
         jnoortheen.nix-ide
       ];
       userSettings = {
@@ -39,6 +40,7 @@
           "(builtins.getFlake \"${config.programs.nh.flake}\").nixosConfigurations.<name>.options";
         # keep-sorted end
         "editor.formatOnSave" = true;
+        "workbench.colorTheme" = "Catppuccin Mocha";
         "editor.guides.bracketPairs" = true;
 
         "editor.guides.bracketPairsHorizontal" = false;
@@ -47,6 +49,9 @@
 
         "workbench.colorCustomizations" = {
           # keep-sorted start
+          "editor.background" = "#181825";
+          "editor.lineHighlightBackground" = "#313244";
+          "editor.lineHighlightBorder" = "#00000000";
           "editorBracketPairGuide.activeBackground1" = "#f38ba8";
           "editorBracketPairGuide.activeBackground2" = "#fab387";
           "editorBracketPairGuide.activeBackground3" = "#f9e2af";
