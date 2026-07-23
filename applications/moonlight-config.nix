@@ -44,6 +44,14 @@
           };
           enabled = true;
         };
+        moonlight-css = {
+          config = {
+            paths = [
+              "https://catppuccin.github.io/discord/dist/catppuccin-mocha-mauve.theme.css"
+            ];
+          };
+          enabled = true;
+        };
         nativeFixes = {
           config = {
             disableRendererBackgrounding = false;
