@@ -16,7 +16,6 @@
     ./applications/catppuccin-gtk.nix
     ./applications/spotify
     ./applications/vrcx
-    ./applications/sidra
     inputs.steam-config-nix.homeModules.default
     inputs.moonlight.homeModules.default
     inputs.catppuccin.homeModules.catppuccin
@@ -112,7 +111,6 @@
     pkgs.blender
     pkgs.ffmpeg
     pkgs.thunderbird
-    inputs.sidra.packages.x86_64-linux.default
     (pkgs.prismlauncher.override {
       jdks = with pkgs; [
         temurin-bin
@@ -137,12 +135,7 @@
     easyeffects.enable = true;
     mako = {
       enable = true;
-      settings = {
-        "app-name=Sidra" = {
-          default-timeout = 5000;
-          ignore-timeout = true;
-        };
-      };
+      settings = { };
     };
 
     hyprpaper = {

@@ -22,10 +22,6 @@
       url = "github:different-name/steam-config-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    sidra = {
-      url = "github:wimpysworld/sidra";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     moonlight = {
       url = "github:moonlight-mod/moonlight";
       inputs.nixpkgs.follows = "nixpkgs";
