@@ -14,6 +14,7 @@
     ./applications/steam.nix
     ./applications/moonlight-config.nix
     ./applications/catppuccin-gtk.nix
+    ./applications/spicetify.nix
     ./applications/vrcx
     ./applications/sidra
     inputs.steam-config-nix.homeModules.default
