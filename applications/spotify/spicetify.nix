@@ -12,9 +12,14 @@ in
 
   programs.spicetify = {
     enable = true;
-    enabledExtensions = with spicePkgs.extensions; [
+    enabledExtensions = (with spicePkgs.extensions; [
       adblock
       groupSession
+    ]) ++ [
+      {
+        src = ./.;
+        name = "notify-song-change.js";
+      }
     ];
     theme = spicePkgs.themes.catppuccin;
     colorScheme = "mocha";

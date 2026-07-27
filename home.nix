@@ -135,7 +135,12 @@
     easyeffects.enable = true;
     mako = {
       enable = true;
-      settings = { };
+      settings = {
+        "body~=\"^xpui\\.app\\.spotify\\.com\"" = {
+          default-timeout = 5000;
+          ignore-timeout = true;
+        };
+      };
     };
 
     hyprpaper = {
