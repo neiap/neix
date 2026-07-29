@@ -94,6 +94,8 @@
       inherit (inputs.moonlight.packages.x86_64-linux) moonlight;
     })
     pkgs.grimblast
+    pkgs.slurp
+    pkgs.wf-recorder
     pkgs.wl-clipboard
     pkgs.playerctl
     pkgs.libnotify

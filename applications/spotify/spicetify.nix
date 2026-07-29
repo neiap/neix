@@ -12,15 +12,16 @@ in
 
   programs.spicetify = {
     enable = true;
-    enabledExtensions = (with spicePkgs.extensions; [
-      adblock
-      groupSession
-    ]) ++ [
-      {
-        src = ./.;
-        name = "notify-song-change.js";
-      }
-    ];
+    enabledExtensions =
+      (with spicePkgs.extensions; [
+        adblock
+      ])
+      ++ [
+        {
+          src = ./.;
+          name = "notify-song-change.js";
+        }
+      ];
     theme = spicePkgs.themes.catppuccin;
     colorScheme = "mocha";
 
@@ -36,7 +37,7 @@ in
         .lyrics-lyricsContent-provider, .lyrics-lyricsContent-description { color: #FFFFFFB6 !important; }
       ''
 
-      #remove 'now playing view'
+      # remove 'now playing view'
       ''
         .Root__right-sidebar:has(.NowPlayingView) { width: 0 !important; overflow: hidden !important; }
         button:has(path[d='M11.196 8 6 5v6l5.196-3z']), button:has(path[d='M11.196 8 6 5v6z']) { display: none; }
