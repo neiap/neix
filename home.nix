@@ -54,7 +54,10 @@
     kitty.enable = true;
     fastfetch.enable = true;
     bash.enable = true;
-    btop.enable = true;
+    btop = {
+      enable = true;
+      package = pkgs.btop.override { cudaSupport = true; };
+    };
     nushell = {
       enable = true;
       shellAliases = {
@@ -110,6 +113,7 @@
     pkgs.p7zip-rar
     pkgs.ayugram-desktop
     pkgs.mpv
+    pkgs.stremio-linux-shell
     pkgs.blender
     pkgs.ffmpeg
     pkgs.thunderbird
