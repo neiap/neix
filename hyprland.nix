@@ -139,8 +139,6 @@
         # cycle workspaces
         "$mod, bracketleft, workspace, m-1"
         "$mod, bracketright, workspace, m+1"
-        ",mouse:275, workspace, m-1" # # dibbys mouse keys - look to change to your own
-        ",mouse:276, workspace, m+1"
 
         # cycle monitors
         "$mod SHIFT, bracketleft, focusmonitor, l"
