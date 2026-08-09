@@ -185,6 +185,7 @@
   };
 
   hardware = {
+    ckb-next.enable = true;
     steam-hardware.enable = true;
     nvidia = {
       modesetting.enable = true;
