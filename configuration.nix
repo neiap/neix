@@ -51,6 +51,7 @@
       "networkmanager"
       "podman"
       "video"
+      "wireshark"
     ];
   };
 
@@ -71,6 +72,10 @@
     hyprland.enable = true;
     dconf.enable = true;
     xfconf.enable = true;
+    wireshark = {
+      enable = true;
+      package = pkgs.wireshark;
+    };
 
     uwsm = {
       enable = true;
