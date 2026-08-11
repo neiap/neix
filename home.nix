@@ -84,9 +84,15 @@
     };
     git = {
       enable = true;
-      settings.user = {
-        name = "neiap";
-        email = "neiap@proton.me";
+      settings = {
+        user = {
+          name = "neiap";
+          email = "neiap@proton.me";
+        };
+        credential = {
+          "https://github.com".helper = "!${pkgs.gh}/bin/gh auth git-credential";
+          "https://gist.github.com".helper = "!${pkgs.gh}/bin/gh auth git-credential";
+        };
       };
     };
   };
@@ -95,6 +101,7 @@
     pkgs.xrandr
     pkgs.nixfmt-tree
     pkgs.claude-code
+    pkgs.gh
     (pkgs.discord.override {
       withMoonlight = true;
       inherit (inputs.moonlight.packages.x86_64-linux) moonlight;
