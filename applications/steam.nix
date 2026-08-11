@@ -16,9 +16,10 @@
         compatTool = inputs.nixpkgs-xr.packages."x86_64-linux".proton-rtsp-bin;
         launchOptions.env = {
           TZ = null;
+          STEAMVIDEOTOKEN = "32f5h290g53047gv5034nbvt923b";
           PROTON_VR_RUNTIME = "${pkgs.xrizer}/lib/xrizer";
           VR_OVERRIDE = "${pkgs.xrizer}/lib/xrizer";
-          XRIZER_TRACKER_SERIALS = "LHR-47B90BBC;LHR-383B0B7D;LHR-DA140F05;LHR-D03ECB7F";
+          XRIZER_TRACKER_SERIALS = "LHR-47B90BBC;LHR-383B0B7D;LHR-D03ECB7F";
         };
       };
       "Counter Strike 2" = {
