@@ -118,6 +118,7 @@
     pkgs.gimp
     pkgs.motoc
     pkgs.unityhub
+    pkgs.unzip
     pkgs.alcom
     pkgs.file-roller
     pkgs.p7zip-rar
