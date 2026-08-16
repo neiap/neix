@@ -1,9 +1,15 @@
 {
+  config,
   pkgs,
   inputs,
   ...
 }:
 {
+
+  home.file."Pictures/VRChat" = {
+    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.local/share/Steam/steamapps/compatdata/438100/pfx/drive_c/users/steamuser/Pictures/VRChat";
+    force = true;
+  };
 
   programs.steam.config = {
     enable = true;
