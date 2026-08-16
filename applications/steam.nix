@@ -21,6 +21,7 @@
           VR_OVERRIDE = "${pkgs.xrizer}/lib/xrizer";
           XRIZER_TRACKER_SERIALS = "LHR-47B90BBC;LHR-383B0B7D;LHR-D03ECB7F";
         };
+        launchOptions.args = [ "--ignore-trackers=LHR-DA140F05" ];
       };
       "Counter Strike 2" = {
         id = 730;
