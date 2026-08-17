@@ -24,8 +24,7 @@
       "$mod" = "SUPER";
 
       exec-once = [
-        "mako"
-        "xrandr --output DP-2 --primary"
+        "uwsm finalize"
       ];
 
       env = [
@@ -63,7 +62,7 @@
       monitorv2 = [
         {
           output = "desc:Ancor Communications Inc ROG PG279Q #ASPyoJ5sadfd";
-          mode = "2650x1440@165";
+          mode = "2560x1440@165";
           position = "0x0";
         }
         {
