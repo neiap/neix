@@ -108,7 +108,6 @@
     })
     pkgs.grimblast
     pkgs.slurp
-    pkgs.wf-recorder
     pkgs.wl-clipboard
     pkgs.playerctl
     pkgs.libnotify
@@ -140,6 +139,11 @@
     windowManager = {
       hyprland = {
         enable = true;
+        # uwsm owns the session. home-manager's hyprland-session.target now has
+        # PropagatesStopTo=graphical-session.target, so its generated exec-once
+        # (stop/start hyprland-session.target) tears down uwsm's wayland-wm
+        # service and kills the compositor a second after it starts.
+        systemd.enable = false;
         configType = "hyprlang";
         settings = {
         };
