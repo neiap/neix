@@ -54,6 +54,7 @@
     kitty.enable = true;
     fastfetch.enable = true;
     bash.enable = true;
+    obs-studio.enable = true;
 
     btop = {
       enable = true;
@@ -139,10 +140,6 @@
     windowManager = {
       hyprland = {
         enable = true;
-        # uwsm owns the session. home-manager's hyprland-session.target now has
-        # PropagatesStopTo=graphical-session.target, so its generated exec-once
-        # (stop/start hyprland-session.target) tears down uwsm's wayland-wm
-        # service and kills the compositor a second after it starts.
         systemd.enable = false;
         configType = "hyprlang";
         settings = {
