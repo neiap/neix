@@ -22,6 +22,9 @@ in
           name = "notify-song-change.js";
         }
       ];
+    enabledCustomApps = with spicePkgs.apps; [
+      lyricsPlus
+    ];
     theme = spicePkgs.themes.catppuccin;
     colorScheme = "mocha";
 
