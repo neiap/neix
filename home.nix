@@ -127,6 +127,7 @@
     pkgs.blender
     pkgs.ffmpeg
     pkgs.thunderbird
+    pkgs.osu-lazer-bin
     (pkgs.prismlauncher.override {
       jdks = with pkgs; [
         temurin-bin
@@ -156,6 +157,10 @@
         "body~=\"^xpui\\.app\\.spotify\\.com\"" = {
           default-timeout = 5000;
           ignore-timeout = true;
+        };
+
+        "mode=do-not-disturb" = {
+          invisible = true;
         };
       };
     };
