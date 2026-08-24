@@ -154,7 +154,7 @@
         ''$mod, D, exec, notify-send -t 5000 "$(date "+%a %-d %b %Y | %-I:%M%p")"''
 
         # toggle mako dnd
-        "$mod SHIFT, D, exec, mako-dnd"
+        "$mod SHIFT, D, exec, makoctl mode -t do-not-disturb"
 
         # ddcutil external monitor brightness
         "$mod, PAGE_UP, exec, ddcutil setvcp 10 + 10"
