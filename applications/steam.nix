@@ -17,8 +17,8 @@
     defaultCompatTool = pkgs.proton-ge-bin;
 
     apps = {
-      "VRChat" = {
-        id = 438100;
+      "438100" = {
+        name = "vrchat";
         compatTool = inputs.nixpkgs-xr.packages."x86_64-linux".proton-rtsp-bin;
         launchOptions.env = {
           TZ = null;
@@ -29,11 +29,13 @@
         };
         launchOptions.args = [ "--ignore-trackers=LHR-DA140F05" ];
       };
-      "Counter Strike 2" = {
-        id = 730;
+
+      "730" = {
+        name = "cs2";
       };
-      "Elden Ring" = {
-        id = 1245620;
+
+      "1245620" = {
+        name = "elden ring";
         launchOptions.env = {
           PROTON_ENABLE_NVAPI = "1";
           DXVK_ASYNC = "1";
