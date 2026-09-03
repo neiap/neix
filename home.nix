@@ -13,6 +13,7 @@
     ./applications/vscodium.nix
     ./applications/steam.nix
     ./applications/moonlight-config.nix
+    ./applications/discord
     ./applications/catppuccin-gtk.nix
     ./applications/spotify
     ./applications/vrcx
@@ -103,10 +104,6 @@
     pkgs.nixfmt-tree
     pkgs.claude-code
     pkgs.gh
-    (pkgs.discord.override {
-      withMoonlight = true;
-      inherit (inputs.moonlight.packages.x86_64-linux) moonlight;
-    })
     pkgs.grimblast
     pkgs.slurp
     pkgs.wl-clipboard
@@ -128,6 +125,7 @@
     pkgs.ffmpeg
     pkgs.thunderbird
     pkgs.osu-lazer-bin
+    pkgs.xemu
     (pkgs.prismlauncher.override {
       jdks = with pkgs; [
         temurin-bin
