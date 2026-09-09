@@ -155,16 +155,17 @@
               };
             }
           ];
-          default.clock.rate = 44100;
-          default.clock.allowed-rates = [
-            44100
-            48000
-            88200
-            96000
-          ];
-          default.clock.quantum = 1024;
-          default.clock.min-quantum = 1024;
         };
+      };
+      extraConfig.pipewire."92-buffer-headroom"."context.properties" = {
+        "default.clock.allowed-rates" = [
+          44100
+          48000
+          88200
+          96000
+        ];
+        "default.clock.quantum" = 1024;
+        "default.clock.min-quantum" = 1024;
       };
     };
 
