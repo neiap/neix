@@ -126,6 +126,7 @@
     pkgs.thunderbird
     pkgs.osu-lazer-bin
     pkgs.xemu
+    pkgs.pcsx2
     (pkgs.prismlauncher.override {
       jdks = with pkgs; [
         temurin-bin
