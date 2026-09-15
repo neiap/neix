@@ -37,7 +37,6 @@
                 mountpoint = "/btrfs";
 
                 subvolumes = {
-                  # current root, is swapped out each boot
                   "root/current" = {
                     mountOptions = [ "noatime" ];
                     mountpoint = "/";
