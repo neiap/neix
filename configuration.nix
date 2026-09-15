@@ -64,6 +64,7 @@
     };
     systemPackages = with pkgs; [
       git
+      e2fsprogs
     ];
   };
 
@@ -158,10 +159,10 @@
         };
       };
       extraConfig.pipewire."92-buffer-headroom"."context.properties" = {
+        "default.clock.rate" = 48000;
+        # pro x 2 lightspeed is 48k-only, listing 44100 lets osu drag the graph clock off the hw rate
         "default.clock.allowed-rates" = [
-          44100
           48000
-          88200
           96000
         ];
         "default.clock.quantum" = 1024;
