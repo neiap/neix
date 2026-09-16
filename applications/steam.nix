@@ -34,6 +34,11 @@
         name = "cs2";
       };
 
+      "3527290" = {
+        name = "peak";
+        launchOptions.env.WINEDLLOVERRIDES = "winhttp=n,b";
+      };
+
       "1245620" = {
         name = "elden ring";
         launchOptions.env = {
