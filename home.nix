@@ -17,6 +17,7 @@
     ./applications/spotify
     ./applications/vrcx
     ./applications/opengoal.nix
+    ./applications/unity.nix
     inputs.steam-config-nix.homeModules.default
     inputs.moonlight.homeModules.default
     inputs.catppuccin.homeModules.catppuccin
