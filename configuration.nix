@@ -55,6 +55,13 @@
     ];
   };
 
+  # nodatacow for new files under the unity projects dir, speeds up poiyomi shader locking
+  systemd.tmpfiles.rules = [
+    "d /home/neia/alcom 0755 neia users - -"
+    "h /home/neia/alcom - - - - +C"
+    "h /home/neia/alcom/*/Library - - - - +C"
+  ];
+
   environment = {
     shells = [ pkgs.nushell ];
     sessionVariables = {
