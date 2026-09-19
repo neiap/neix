@@ -12,7 +12,6 @@
     ./applications/firefox.nix
     ./applications/vscodium.nix
     ./applications/steam.nix
-    ./applications/moonlight-config.nix
     ./applications/discord
     ./applications/catppuccin-gtk.nix
     ./applications/spotify

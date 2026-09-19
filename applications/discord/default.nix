@@ -17,6 +17,8 @@ let
       });
 in
 {
+  imports = [ ./moonlight-config.nix ];
+
   home.packages = [
     (pkgs.discord.override (discordArgs // { unwrappedDiscord = patchedUnwrapped; }))
   ];
