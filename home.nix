@@ -16,6 +16,7 @@
     ./applications/catppuccin-gtk.nix
     ./applications/spotify
     ./applications/vrcx
+    ./applications/opengoal.nix
     inputs.steam-config-nix.homeModules.default
     inputs.moonlight.homeModules.default
     inputs.catppuccin.homeModules.catppuccin
