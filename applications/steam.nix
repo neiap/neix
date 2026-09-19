@@ -20,14 +20,14 @@
       "438100" = {
         name = "vrchat";
         compatTool = inputs.nixpkgs-xr.packages."x86_64-linux".proton-rtsp-bin;
-        launchOptions.env = {
+        env = {
           TZ = null;
           STEAMVIDEOTOKEN = "32f5h290g53047gv5034nbvt923b";
           PROTON_VR_RUNTIME = "${pkgs.xrizer}/lib/xrizer";
           VR_OVERRIDE = "${pkgs.xrizer}/lib/xrizer";
           XRIZER_TRACKER_SERIALS = "LHR-47B90BBC;LHR-383B0B7D;LHR-D03ECB7F";
         };
-        launchOptions.args = [ "--ignore-trackers=LHR-DA140F05" ];
+        args = [ "--ignore-trackers=LHR-DA140F05" ];
       };
 
       "730" = {
@@ -36,12 +36,12 @@
 
       "3527290" = {
         name = "peak";
-        launchOptions.env.WINEDLLOVERRIDES = "winhttp=n,b";
+        env.WINEDLLOVERRIDES = "winhttp=n,b";
       };
 
       "1245620" = {
         name = "elden ring";
-        launchOptions.env = {
+        env = {
           PROTON_ENABLE_NVAPI = "1";
           DXVK_ASYNC = "1";
         };
