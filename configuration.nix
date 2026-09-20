@@ -167,13 +167,13 @@
       };
       extraConfig.pipewire."92-buffer-headroom"."context.properties" = {
         "default.clock.rate" = 48000;
-        # pro x 2 lightspeed is 48k-only, listing 44100 lets osu drag the graph clock off the hw rate
         "default.clock.allowed-rates" = [
           48000
           96000
         ];
         "default.clock.quantum" = 1024;
-        "default.clock.min-quantum" = 1024;
+        "default.clock.min-quantum" = 64;
+        "default.clock.max-quantum" = 2048;
       };
     };
 
