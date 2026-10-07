@@ -129,6 +129,8 @@
     pkgs.osu-lazer-bin
     pkgs.xemu
     pkgs.pcsx2
+    pkgs.stremio-service
+    pkgs.qbittorrent
     (pkgs.prismlauncher.override {
       jdks = with pkgs; [
         temurin-bin
