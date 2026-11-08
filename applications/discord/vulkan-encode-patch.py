@@ -53,22 +53,43 @@ SITES = [
         },""",
     ),
     (
-        """VoiceEngine.createVoiceConnectionWithOptions = function (userId, connectionOptions, onConnectCallback) {
-    const instance = new VoiceEngine.VoiceConnection(userId, connectionOptions, onConnectCallback);
-    return bindConnectionInstance(instance);
-};""",
-        """VoiceEngine.createVoiceConnectionWithOptions = function (userId, connectionOptions, onConnectCallback) {
-    let patchedConnectionOptions = connectionOptions;
-    if (process.platform === 'linux' && connectionOptions != null && typeof connectionOptions === 'object') {
-        const experiments = Array.isArray(connectionOptions.experiments) ? [...connectionOptions.experiments] : [];
-        if (!experiments.includes('linux-vulkan')) {
-            experiments.push('linux-vulkan');
-            patchedConnectionOptions = { ...connectionOptions, experiments };
-        }
+        """if (RUN_MEDIA_HOST) {
+    const createVoiceRaw = VoiceEngine.createVoiceConnectionWithOptions;
+    VoiceEngine.createVoiceConnectionWithOptions = function (userId, connectionOptions, onConnectCallback) {
+        const instance = createVoiceRaw(userId, connectionOptions, onConnectCallback);
+        return bindConnectionInstance(instance);
+    };
+}
+else {
+    VoiceEngine.createVoiceConnectionWithOptions = function (userId, connectionOptions, onConnectCallback) {
+        const instance = new VoiceEngine.VoiceConnection(userId, connectionOptions, onConnectCallback);
+        return bindConnectionInstance(instance);
+    };
+}""",
+        """const patchVoiceConnectionOptions = (connectionOptions) => {
+    if (process.platform !== 'linux' || connectionOptions == null || typeof connectionOptions !== 'object') {
+        return connectionOptions;
     }
-    const instance = new VoiceEngine.VoiceConnection(userId, patchedConnectionOptions, onConnectCallback);
-    return bindConnectionInstance(instance);
-};""",
+    const experiments = Array.isArray(connectionOptions.experiments) ? [...connectionOptions.experiments] : [];
+    if (experiments.includes('linux-vulkan')) {
+        return connectionOptions;
+    }
+    experiments.push('linux-vulkan');
+    return { ...connectionOptions, experiments };
+};
+if (RUN_MEDIA_HOST) {
+    const createVoiceRaw = VoiceEngine.createVoiceConnectionWithOptions;
+    VoiceEngine.createVoiceConnectionWithOptions = function (userId, connectionOptions, onConnectCallback) {
+        const instance = createVoiceRaw(userId, patchVoiceConnectionOptions(connectionOptions), onConnectCallback);
+        return bindConnectionInstance(instance);
+    };
+}
+else {
+    VoiceEngine.createVoiceConnectionWithOptions = function (userId, connectionOptions, onConnectCallback) {
+        const instance = new VoiceEngine.VoiceConnection(userId, patchVoiceConnectionOptions(connectionOptions), onConnectCallback);
+        return bindConnectionInstance(instance);
+    };
+}""",
     ),
 ]
 
