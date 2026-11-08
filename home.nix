@@ -145,7 +145,7 @@
       hyprland = {
         enable = true;
         systemd.enable = false;
-        configType = "hyprlang";
+        configType = "lua";
         settings = {
         };
       };
