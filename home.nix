@@ -55,7 +55,10 @@
 
   programs = {
     home-manager.enable = true;
-    kitty.enable = true;
+    kitty = {
+      enable = true;
+      settings.remember_window_size = "no";
+    };
     fastfetch.enable = true;
     bash.enable = true;
     obs-studio.enable = true;
