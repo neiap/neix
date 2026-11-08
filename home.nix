@@ -67,6 +67,7 @@
 
     nushell = {
       enable = true;
+      loadSessionVariables = true;
       shellAliases = {
         start-hyprland = "uwsm start -- /run/current-system/sw/bin/start-hyprland";
         # command to download catpuccin userstyles for import into stylus for firefox
