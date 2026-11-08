@@ -26,7 +26,7 @@
     };
   };
 
-  time.timeZone = "Australia/NSW";
+  time.timeZone = "Australia/Sydney";
   i18n.defaultLocale = "en_AU.UTF-8";
 
   powerManagement.cpuFreqGovernor = "performance";
