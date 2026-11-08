@@ -43,7 +43,6 @@
   users.users.neia = {
     isNormalUser = true;
     shell = pkgs.nushell;
-    initialPassword = "meow";
     extraGroups = [
       "wheel"
       "audio"
