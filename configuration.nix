@@ -199,6 +199,7 @@
   };
 
   hardware = {
+    i2c.enable = true;
     ckb-next.enable = true;
     steam-hardware.enable = true;
     nvidia = {

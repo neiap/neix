@@ -31,7 +31,6 @@ let
 
   workspaces = map toString (lib.range 1 9);
 
-  getBrightness = "ddcutil getvcp 10 | awk -F'=' '/current value/ { gsub(\",\", \"\", $2); print $2+0 }'";
 in
 {
   wayland.windowManager.hyprland.settings = {
@@ -123,15 +122,13 @@ in
       (bind "ALT + SHIFT + TAB" "hl.dsp.group.prev()")
       (bind "${mod} + T" "hl.dsp.window.pin()")
       (bind "CTRL + ALT + DELETE" (exec (uwsmApp "hyprctl kill")))
-      (bind "CTRL + ALT + SHIFT + DELETE" (
-        exec ''systemctl --user stop wayland-wm@hyprland\\x2duwsm.desktop.service''
-      ))
+      (bind "CTRL + ALT + SHIFT + DELETE" (exec "uwsm stop"))
 
       # utility
       ## terminal
       (launch "${mod} + RETURN" "kitty")
-      ## lock screen
-      (bind "${mod} + L" (exec (uwsmSingleApp "hyprlock")))
+      ## lock screen, hyprlock is not installed
+      # (bind "${mod} + L" (exec (uwsmSingleApp "hyprlock")))
       ## launcher
       (bind "${mod} + S" (exec "vicinae toggle")) # not using uwsm as it introduces latency
       ## browser
@@ -183,10 +180,10 @@ in
       # toggle mako dnd
       (bind "${mod} + SHIFT + D" (exec "makoctl mode -t do-not-disturb"))
 
-      # ddcutil external monitor brightness
-      (bind "${mod} + PAGE_UP" (exec "ddcutil setvcp 10 + 10"))
-      (bind "${mod} + PAGE_DOWN" (exec "ddcutil setvcp 10 - 10"))
-      (bind "${mod} + PRINT" (exec "notify-send -t 5000 \"Current Brightness: $(${getBrightness})%\""))
+      # ddc/ci brightness, acts on whichever monitor the cursor is on
+      (bindWith { repeating = true; } "${mod} + PAGE_UP" (exec "brightness up"))
+      (bindWith { repeating = true; } "${mod} + PAGE_DOWN" (exec "brightness down"))
+      (bind "${mod} + PRINT" (exec "brightness get"))
 
       # resize with arrowkeys
       (bindWith {

@@ -18,6 +18,7 @@
     ./applications/vrcx
     ./applications/opengoal.nix
     ./applications/unity.nix
+    ./applications/brightness
     ./applications/vr-session.nix
     inputs.steam-config-nix.homeModules.default
     inputs.moonlight.homeModules.default
