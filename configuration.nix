@@ -10,7 +10,11 @@
   ];
 
   boot.loader = {
-    systemd-boot.enable = true;
+    systemd-boot = {
+      enable = true;
+      # /boot is 2G, cap entries to match the generations nh clean keeps
+      configurationLimit = 10;
+    };
     efi.canTouchEfiVariables = true;
   };
 
