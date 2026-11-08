@@ -115,14 +115,7 @@
         icu
       ];
     };
-    steam = {
-      enable = true;
-      package = pkgs.steam.override {
-        extraProfile = ''
-
-        '';
-      };
-    };
+    steam.enable = true;
 
     nh = {
       enable = true;
